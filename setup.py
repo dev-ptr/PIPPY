@@ -52,6 +52,11 @@ for x in range(1,4):
 	if os.system("sudo apt-get install -y python3-smbus") == 0:
 		break
 
+# Now we install all the things that were left out...
+for x in range(1,4):
+	if os.system("sudo apt-get install -y libharfbuzz0 libavcodec58 libavformat58 libswscale5 libgtk-3-0 libilmbase-dev libopenexr-dev") == 0:
+		break
+
 for x in range(1,4):
 	if os.system("sudo pip3 install icm20948") == 0:
 		break
