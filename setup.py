@@ -138,8 +138,14 @@ try:
 except:
 	pass
 
-replace_num('/etc/rc.local','exit 0','cd '+thisPath+' && sudo python3 webServer.py &\nexit 0')
-
+# Here we actually check if it's in /etc/rc.local before putting it in there
+run_string = 'cd '+thisPath+' && sudo python3 webServer.py &\nexit 0'
+file = open("/etc/rc.local")
+if run_string not in file.read():
+	replace_num('/etc/rc.local','exit 0', run_string)
+else:
+	print("Start up already in /etc/rc.local, skipping...")
+	
 print('Completed!')
 
 os.system("sudo reboot")
